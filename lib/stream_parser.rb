@@ -13,16 +13,14 @@ rescue Errno::ENOENT
   Process.exit
 end
 
-users = YAML.load_file('data/users.yml').keys
+users = YAML.load_file('data/users.yml')
 
-TweetStream::Client.new(config[:user], config[:password]).follow(*users) do |status|
-  if status.favorited
-    user = users[status.user.id]
-    username = user[:username]
-    password = user[:password]
-    Instapaper.add_url(username, password, 'http://www.heise.de')
+TweetStream::Client.new(config[:user], config[:password]).follow(*users.keys) do |status|
+  if true #status.favorited
+    user = users[status.user.id.to_i]
+    username = user[:instapaper_username]
+    password = user[:instapaper_password]
+    Instapaper.add_url(username, 'http://www.heise.de', password)
   end
-
-  puts "#{status.text}"
   puts "#{status.inspect}"
 end

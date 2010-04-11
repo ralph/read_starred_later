@@ -35,7 +35,7 @@ class ReadStarredLater < Sinatra::Base
 
 private
   def add_user(twitter_id, instapaper_username, instapaper_password = '')
-    @users = @users.merge(twitter_id => { :instapaper_username => instapaper_username, :instapaper_password => instapaper_password })
+    @users = @users.merge(twitter_id.to_i => { :instapaper_username => instapaper_username, :instapaper_password => instapaper_password })
     f = File.open('data/users.yml', 'w')
     f.write @users.to_yaml
     f.close
