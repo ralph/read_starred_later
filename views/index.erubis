@@ -1,0 +1,9 @@
+<form method="post" action="/add_user">
+  <label for="twitter_id">Twitter ID: </label> 
+  <input type="text" name="twitter_id" /><br />
+  <label for="instapaper_username">Instapaper Username: </label> 
+  <input type="text" name="instapaper_username" /><br />
+  <label for="instapaper_password">Instapaper Password: </label> 
+  <input type="text" name="instapaper_password" /><br />
+  <input type="submit" value="Go" /> 
+</form>
