@@ -17,7 +17,8 @@ class ReadStarredLater < Sinatra::Base
 
   def initialize
     super
-    @users = YAML.load_file('data/users.yml')
+    user_file = 'data/users.yml'
+    @users = (File.exists?(user_file) ? YAML.load_file(user_file) : {})
   end
 
   get '/' do
